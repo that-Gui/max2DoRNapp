@@ -7,7 +7,11 @@ export default function App() {
 	const [todolist, setTodolist] = React.useState([]);
 
 	const handleAdd = (listitemtxt) => {
-		setTodolist((curr) => [...curr, { key: Math.random(), text: listitemtxt }]);
+		setTodolist((curr) => [...curr, { id: Math.random(), text: listitemtxt }]);
+	};
+
+	const deleteListItem = (item2delete) => {
+		console.log('deleteListItem', item2delete);
 	};
 
 	return (
@@ -18,7 +22,9 @@ export default function App() {
 			<View style={styles.tdzContainer}>
 				<FlatList
 					data={todolist}
-					renderItem={(item) => <ListItem item={item.item} />}
+					renderItem={(item) => (
+						<ListItem item={item.item} deleteListItem={deleteListItem} />
+					)}
 				/>
 			</View>
 		</View>

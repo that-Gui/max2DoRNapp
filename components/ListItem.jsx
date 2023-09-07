@@ -1,12 +1,18 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, Pressable } from 'react-native';
 
-export default function ListItem({ item }) {
+export default function ListItem({ item, deleteListItem }) {
+	const handledeleteListItem = () => {
+		deleteListItem(item.id);
+	};
+
 	return (
-		<View style={styles.listItem}>
-			<Text style={{ color: 'white' }}>{item.text}</Text>
-			<Text style={{ color: 'white' }}>{item.key}</Text>
-		</View>
+		<Pressable onPress={handledeleteListItem}>
+			<View style={styles.listItem}>
+				<Text style={{ color: 'white' }}>{item.text}</Text>
+				<Text style={{ color: 'white' }}>{item.id}</Text>
+			</View>
+		</Pressable>
 	);
 }
 
