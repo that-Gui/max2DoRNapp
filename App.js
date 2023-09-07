@@ -1,15 +1,25 @@
 import React from 'react';
-import { Button, StyleSheet, Text, TextInput, View } from 'react-native';
+import { FlatList, StyleSheet, View } from 'react-native';
+import ListItem from './components/ListItem';
+import TodoItemInput from './components/TodoItemInput';
 
 export default function App() {
+	const [todolist, setTodolist] = React.useState([]);
+
+	const handleAdd = (listitemtxt) => {
+		setTodolist((curr) => [...curr, { key: Math.random(), text: listitemtxt }]);
+	};
+
 	return (
 		<View style={styles.appContainer}>
-			<View style={styles.inputDiv}>
-				<TextInput style={styles.txtInput} placeholder='enter ur next 2do' />
-				<Button title='ADD' />
+			<View style={styles.inputDivPlaceHolder}>
+				<TodoItemInput handleAdd={handleAdd} />
 			</View>
-			<View>
-				<Text>Item 1</Text>
+			<View style={styles.tdzContainer}>
+				<FlatList
+					data={todolist}
+					renderItem={(item) => <ListItem item={item.item} />}
+				/>
 			</View>
 		</View>
 	);
@@ -17,18 +27,20 @@ export default function App() {
 
 const styles = StyleSheet.create({
 	appContainer: {
-		padding: 32,
+		flex: 1,
+		paddingTop: 32,
+		paddingHorizontal: 16,
 	},
-	inputDiv: {
-		flexDirection: 'row',
-		backgroundColor: 'pink',
-		justifyContent: 'space-evenly',
+	inputDivPlaceHolder: {
+		flex: 1,
 	},
-	txtInput: {
-		borderWidth: 1,
-		borderColor: '#cccccc',
-		width: '80%',
-		marginRight: 8,
-		padding: 4,
+	tdzContainer: {
+		flex: 5,
+	},
+	listItem: {
+		padding: 8,
+		margin: 8,
+		backgroundColor: '#5e0acc',
+		borderRadius: 8,
 	},
 });
