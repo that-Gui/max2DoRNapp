@@ -37,10 +37,4 @@ const styles = StyleSheet.create({
 	tdzContainer: {
 		flex: 5,
 	},
-	listItem: {
-		padding: 8,
-		margin: 8,
-		backgroundColor: '#5e0acc',
-		borderRadius: 8,
-	},
 });
