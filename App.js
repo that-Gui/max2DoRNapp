@@ -1,30 +1,34 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { Button, StyleSheet, Text, TextInput, View } from 'react-native';
 
 export default function App() {
 	return (
-		<View style={styles.container}>
-			<View>
-				<Text style={styles.dummyText}>This will be a to do list App...</Text>
+		<View style={styles.appContainer}>
+			<View style={styles.inputDiv}>
+				<TextInput style={styles.txtInput} placeholder='enter ur next 2do' />
+				<Button title='ADD' />
 			</View>
 			<View>
-				<Text style={styles.dummyText}>Dummy text</Text>
+				<Text>Item 1</Text>
 			</View>
 		</View>
 	);
 }
 
 const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-		backgroundColor: '#fff',
-		alignItems: 'center',
-		justifyContent: 'center',
+	appContainer: {
+		padding: 32,
 	},
-	dummyText: {
-		marginTop: 16,
-		padding: 16,
+	inputDiv: {
+		flexDirection: 'row',
+		backgroundColor: 'pink',
+		justifyContent: 'space-evenly',
+	},
+	txtInput: {
 		borderWidth: 1,
-		borderColor: 'pink',
+		borderColor: '#cccccc',
+		width: '80%',
+		marginRight: 8,
+		padding: 4,
 	},
 });
