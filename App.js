@@ -1,13 +1,19 @@
 import React from 'react';
-import { FlatList, StyleSheet, View } from 'react-native';
+import { FlatList, StyleSheet, View, Button } from 'react-native';
 import ListItem from './components/ListItem';
 import TodoItemInput from './components/TodoItemInput';
 
 export default function App() {
 	const [todolist, setTodolist] = React.useState([]);
+	const [modalio, setModalio] = React.useState(false);
+
+	const handleModal = () => {
+		setModalio(!modalio);
+	};
 
 	const handleAdd = (listitemtxt) => {
 		setTodolist((curr) => [...curr, { id: Math.random(), text: listitemtxt }]);
+		handleModal();
 	};
 
 	const deleteListItem = (item2delete) => {
@@ -18,9 +24,9 @@ export default function App() {
 
 	return (
 		<View style={styles.appContainer}>
-			<View style={styles.inputDivPlaceHolder}>
-				<TodoItemInput handleAdd={handleAdd} />
-			</View>
+			<Button title='Add New 2do' color={'#5e0acc'} onPress={handleModal} />
+			{modalio && <TodoItemInput handleAdd={handleAdd} visible={modalio} />}
+
 			<View style={styles.tdzContainer}>
 				<FlatList
 					data={todolist}
@@ -38,6 +44,7 @@ const styles = StyleSheet.create({
 		flex: 1,
 		paddingTop: 32,
 		paddingHorizontal: 16,
+		backgroundColor: 'teal',
 	},
 	inputDivPlaceHolder: {
 		flex: 1,
