@@ -12,6 +12,8 @@ export default function App() {
 
 	const deleteListItem = (item2delete) => {
 		console.log('deleteListItem', item2delete);
+		const updatedTodoList = todolist.filter((item) => item.id !== item2delete);
+		setTodolist(updatedTodoList);
 	};
 
 	return (
